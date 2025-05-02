@@ -1,28 +1,29 @@
-// 1 - Contar o número de caracteres de uma string.
+// 2 - Contar o número de caractreres de uma string.
 
 #include <stdio.h>
 
 int main()
 
 {
-    char texto[100];
-    int i = 0, contador = 0;
+    char texto[200];
+    int i = 0, palavras = 0, em_palavra = 0;
 
-    printf("Digite uma palavra: ");
+    printf("Digite uma frase: ");
     fgets(texto, sizeof(texto), stdin);
 
-    //Contando caracteres até encontrar o '\0' do fgets
     while(texto[i] != '\0')
-
     {
-        contador++;
-        //Incrementar o contador
-        i++; //Avança para o próximo caractere
-
+        if((texto[i] != ' ') && (texto[i] != '\n') && (em_palavra == 0))
+        {
+            em_palavra = 0;
+            palavras++;
+        } else if(texto[i] == ' '|| texto[i] == '\n')
+        {
+        em_palavra = 0;
+        }
+        i++;
     }
-
-    printf("Quantidade de caracteres: %d\n", contador-1);
-    // -1 para ignorar o '\n' do fgtes
+    printf("Quatidade de palavras: %d\n", palavras);
 
     return 0;
 }
